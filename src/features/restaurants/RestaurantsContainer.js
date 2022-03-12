@@ -1,12 +1,18 @@
-import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import RestaurantInput from "./RestaurantInput";
 import Restaurants from "./Restaurants";
+import { restaurantAdded } from "./restaurantsSlice";
 
 function RestaurantsContainer() {
+  const dispatch = useDispatch();
+  const restaurants = useSelector((state) => state.restaurants.entities);
+  const handleFormSubmit = (name) => {
+    dispatch(restaurantAdded(name));
+  };
   return (
     <div>
-      <RestaurantInput />
-      <Restaurants />
+      <RestaurantInput onformSubmit={handleFormSubmit} />
+      <Restaurants restaurants={restaurants} />
     </div>
   );
 }
