@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function ReviewInput({ restaurantId, onFormSubmit }) {
   const [comment, setComment] = useState("");
 
-  function formSubmit(event) {
+  function submitHandler(event) {
     event.preventDefault();
     onFormSubmit({ restaurantId, comment });
     setComment("");
@@ -12,12 +12,13 @@ function ReviewInput({ restaurantId, onFormSubmit }) {
   return (
     <div>
       Review Input
-      <form onSubmit={formSubmit}>
-        <label>Comment</label>
+      <form onSubmit={submitHandler}>
+        <label>Comment
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
+        </label>
         <button>Add Review</button>
       </form>
     </div>
